@@ -5,9 +5,18 @@ interface Props {
     
 }
 
+interface Message {
+    content: string,
+    sender: string,
+    sender_handle: string
+    time: string
+}
+
+
 export default function MessageContainer(props: Props) {
-    let messages: string[] = [
-        ""
+    let messages: Message[] = [
+        {content: "...", sender: "RandomGoblin", sender_handle: "Kreegthegoblin", time: "12:00"},
+        {content: "what", sender: "Grimace", sender_handle: "Happy_birthday", time: "12:00"}
     ]
 
     return (<>
@@ -15,10 +24,10 @@ export default function MessageContainer(props: Props) {
             {messages.map((message, i) => {
                 return (<>
                     <Message
-                        sender="RandomGoblin"
-                        sender_handle="Kreeg_the_goblin"
-                        time="12:00pm"
-                        content="ME WANT GOLD"
+                        sender={message.sender}
+                        sender_handle={message.sender_handle}
+                        time={message.time}
+                        content={message.content}
                     />
                     <Separator/>
                 </>)
