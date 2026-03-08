@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 
 interface Props {
-    onSend: (message: string) => Promise<void>
+    onSend: (message: string) => Promise<void>,
+    activeChannel: string,
 }
 
 export default function MessageInputBox(props: Props) {
@@ -22,7 +23,8 @@ export default function MessageInputBox(props: Props) {
 
     return (
         <Textarea 
-            placeholder="Your message here sire"
+            className="min-h-10 text-xl"
+            placeholder={"message #" + props.activeChannel}
             value={value}
             onKeyDown={handleKeyDown}
             onChange={(e) => setValue(e.target.value)}
