@@ -8,7 +8,6 @@ interface Props {
     content: string,
     sender: string,
     sender_handle: string
-    time: string
 }
 
 export default function Message(props: Props) {
