@@ -13,6 +13,10 @@ import axios from "axios"
 interface Props {
     setToken: (value: string) => void
     login_endpoint: string
+    setBase_url: (value: string) => void
+    setSock_url: (value: string) => void
+    base_url: string
+    sock_url: string
 }
 
 
@@ -75,6 +79,14 @@ export default function LoginPane(props: Props) {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="justify-center items-center p-8">
                 <h1 className="text-xl p-8">Log into {document.location.hostname}</h1>
+                <div>
+                    <input value={props.base_url} onChange={(e) => props.setBase_url(e.target.value)} placeholder="https://example.com:8080/api"/>
+                </div>
+                <div>
+                    <input value={props.sock_url} onChange={(e) => props.setSock_url(e.target.value)} placeholder="wss://example.com:8088/"/>
+                </div>
+
+                <hr className="dashed p-3"/>
                 <h4>Username</h4>
                 <Input placeholder="john_doe" value={username} onChange={(e) => setUsername(e.target.value)}/>
 

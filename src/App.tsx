@@ -4,9 +4,6 @@ import LoginPane from "./projectcomponents/LoginPane"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
 
-const baseurl = "http://localhost:3000/api"
-const sock_url = "ws://localhost:3001"
-
 
 export interface MessageStruct {
     content: string,
@@ -34,6 +31,8 @@ export function App() {
   const [activeChannel, setActiveChannel] = useState("general")
   const [messageBuffer, setMessageBuffer] = useState<MessageStruct[]>([])
   const sock = useRef<WebSocket | null>(null)
+  const [sock_url, setSock_url] = useState("ws://localhost:3001")
+  const [base_url, setBase_url] = useState("http://localhost:3000/api")
 
   async function handleSocketMessage(event: MessageEvent) {
     const message = JSON.parse(event.data)
@@ -66,7 +65,7 @@ export function App() {
   }, [activeChannel, sock.current])
 
   async function sendMessage(message: String) {
-    axios.post(baseurl + "/messages/" + activeChannel, message, {
+    axios.post(base_url + "/messages/" + activeChannel, message, {
       headers: {
         "x-auth-token": token
       }
@@ -75,7 +74,14 @@ export function App() {
   }
 
   if (token === "") {
-    return (<LoginPane setToken={setToken} login_endpoint="http://localhost:3000/api/login"/>)
+    return (<LoginPane 
+      setToken={setToken}
+      login_endpoint={base_url + "/login"}
+      setBase_url={setBase_url}
+      setSock_url={setSock_url}
+      base_url={base_url}
+      sock_url={sock_url}
+      />)
   } else {
     return (
       <>
