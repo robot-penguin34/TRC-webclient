@@ -12,7 +12,7 @@ export function App() {
   const [token, setToken] = useState("")
 
   if (token === "") {
-    return (<LoginPane setToken={setToken}/>)
+    return (<LoginPane setToken={setToken} login_endpoint="http://localhost:3000/api/login"/>)
   } else {
     return (
       <>
