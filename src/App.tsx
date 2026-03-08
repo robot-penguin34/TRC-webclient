@@ -37,6 +37,7 @@ export function App() {
 
   async function handleSocketMessage(event: MessageEvent) {
     const message = JSON.parse(event.data)
+    console.log("new message: " + event.data)
 
     /* handle server sent errors */
     if (message.error == true) {
@@ -53,10 +54,16 @@ export function App() {
     sock.current = new WebSocket(sock_url)
     sock.current.onopen = () => {
       sock.current?.send(token)
+      sock.current?.send(activeChannel)
     }
     sock.current.onmessage = (event) => {handleSocketMessage(event)}
 
   }, [token])
+
+  useEffect(() => {
+    if (token === "" || sock.current === null) {return}
+    sock.current.send(activeChannel)
+  }, [activeChannel, sock.current])
 
   async function sendMessage(message: String) {
     axios.post(baseurl + "/messages/" + activeChannel, message, {

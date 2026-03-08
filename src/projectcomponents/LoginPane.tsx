@@ -5,9 +5,8 @@ import {
     Alert,
     AlertDescription,
     AlertTitle,
-    AlertAction
  } from "@/components/ui/alert"
-import { ServerCrash, X } from "lucide-react"
+import { ServerCrash } from "lucide-react"
 import axios from "axios"
 
 

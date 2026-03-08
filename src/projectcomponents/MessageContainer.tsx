@@ -17,6 +17,7 @@ export default function MessageContainer(props: Props) {
                         sender={message.sender.username}
                         sender_handle={message.sender.handle}
                         content={message.content}
+                        key={i}
                     />
                     <Separator/>
                 </>)
