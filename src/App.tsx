@@ -45,7 +45,7 @@ export function App() {
 
     if (message.message_type !== "MESSAGE") {return}
 
-    setMessageBuffer([...messageBuffer, message])
+    setMessageBuffer(val => [...val, message])
   }
 
   useEffect(() => {

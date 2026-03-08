@@ -17,7 +17,7 @@ export default function MessageInputBox(props: Props) {
 
             e.preventDefault() // no newline
             // send message and reset the buffer
-            await props.onSend(value)
+            await props.onSend(value.trim())
 
             // reset buffer
             setValue("")
@@ -30,7 +30,7 @@ export default function MessageInputBox(props: Props) {
             placeholder={"message #" + props.activeChannel}
             value={value}
             onKeyDown={handleKeyDown}
-            onChange={(e) => setValue(e.target.value.trim())}
+            onChange={(e) => setValue(e.target.value)}
         />
     )
 }
