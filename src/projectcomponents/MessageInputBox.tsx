@@ -10,8 +10,11 @@ export default function MessageInputBox(props: Props) {
     const [value, setValue] = useState("")
 
     async function handleKeyDown(e: React.KeyboardEvent) {
+        if (value.length === 0) {return}
+
         /* send message on enter without a shift */
         if (!e.shiftKey && e.key === "Enter") {
+
             e.preventDefault() // no newline
             // send message and reset the buffer
             await props.onSend(value)
@@ -27,7 +30,7 @@ export default function MessageInputBox(props: Props) {
             placeholder={"message #" + props.activeChannel}
             value={value}
             onKeyDown={handleKeyDown}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => setValue(e.target.value.trim())}
         />
     )
 }

@@ -6,7 +6,7 @@ import {
     AlertDescription,
     AlertTitle,
  } from "@/components/ui/alert"
-import { ServerCrash } from "lucide-react"
+import { X } from "lucide-react"
 import axios from "axios"
 
 
@@ -65,7 +65,7 @@ export default function LoginPane(props: Props) {
         <div>
             {isShowingError &&
                 <Alert className="max-w-md bottom-10 right-10 fixed p-8 z-100 animate-in fade-in slide-in-from-bottom-2 duration-300" variant="destructive" >
-                    <ServerCrash />
+                    <X onClick={() => setIsShowingError(false)} />
                     <AlertTitle>Error logging in</AlertTitle>
                     <AlertDescription>Try a different username or password</AlertDescription>
                 </Alert>
@@ -74,7 +74,7 @@ export default function LoginPane(props: Props) {
 
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="justify-center items-center p-8">
-                <h1 className="text-l">Log into TRC</h1>
+                <h1 className="text-xl p-8">Log into {document.location.hostname}</h1>
                 <h4>Username</h4>
                 <Input placeholder="john_doe" value={username} onChange={(e) => setUsername(e.target.value)}/>
 
